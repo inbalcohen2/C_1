@@ -1,31 +1,28 @@
 
+GCC=gcc -Wall -g
+POWBASIC=power.o basicMath.o
 
-mymaths:power.o basicMath.o
-	ar -rcs libmyMath.a power.o basicMath.o
+all: mymaths mymathd mains maind main.o $(POWBASIC)
 
+power.o: power.c myMath.h
+	$(GCC) -c power.c
+basicMath.o: basicMath.c myMath.h
+	$(GCC) -c basicMath.c
 
-power.o:power.c myMath.h
-	gcc -Wall -g -c power.c
+main.o: main.c myMath.h
+	gcc -c main.c
 
-basicMathc:	basicMath.c myMath.h
-	gcc -Wall -g -c basicMath.c
+mymaths: power.o basicMath.o
+	ar -rcs libmyMath.a $(POWBASIC)
 
+mymathd: power.o basicMath.o
+	$(GCC) -o libmyMath.so -shared $(POWBASIC)
 
-mymathd:power.o basicMath.o
-	gcc -Wall -g -shared power.o basicMath.o -o libmyMath.so
-
-mains:main.o mymaths 
-	gcc -Wall -g -o mains main.o libmyMath.a
-
-maind:main.o mymathd 
-	gcc -Wall -g -o maind main.o ./libmyMath.so
-
-main.o:main.c myMaths.h
-	gcc -o main.o main.c
-
-all:basicMath.o  power.o main.o mymathd mymaths mains maind
+mains: main.o mymaths
+	$(GCC) -o mains main.o libmyMath.a
+maind: main.o mymathd
+	$(GCC) -o maind main.o ./libmyMath.so
 
 clean:
-	rm -f *.o *.so *.a maind mains
- 
-	
+	rm -f *.o *.a *.so mains maind
+
