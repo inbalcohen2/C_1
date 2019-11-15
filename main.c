@@ -23,9 +23,9 @@ float f_2=add(tmp3,tmp4);
 
 float f_3=sub((float)div(mul(Pow(input_x,3),4),5),(float)mul(input_x,2));
 
-printf("The value of f(x)=e^x+x^3−2 at the point %.4f is: %.4f",input_x,f_1);
-printf("The value of f(x)=3x+2X^2 at the point %.4f is: %.4f",input_x,f_2);
-printf("The value of f(x)=(4x^3)/5-2x at the point %.4f is: %.4f",input_x,f_3);
+printf(" \n The value of f(x)=e^x+x^3−2 at the point %.4f is: %.4f",input_x,f_1);
+printf(" \n The value of f(x)=3x+2X^2 at the point %.4f is: %.4f",input_x,f_2);
+printf(" \n The value of f(x)=(4x^3)/5-2x at the point %.4f is: %.4f",input_x,f_3);
      
 
     return 0;
